@@ -1,9 +1,21 @@
 export const getResults = async (value) => {
-    //url = `${process.env.APIURL}/?apikey=${process.env.APIKEY}&s=${value}`
-    resp = await fetch(`http://www.omdbapi.com/?apikey=c71a195b&s=${value}`)
-    result = await resp.json()
-    if(!resp.ok) {
-        throw(new Error('Error in the request'))
+    try{
+        let resp = await fetch(`http://www.omdbapi.com/?apikey=c71a195b&s=${value}`)
+        let result = await resp.json()
+        return result
     }
-    return result
+    catch (err) {
+        throw(new Error(err.message))
+    }
+}
+
+export const fetchDetails = async (id) => {
+    try{
+        let resp = await fetch(`http://www.omdbapi.com/?apikey=c71a195b&i=${id}`)
+        let result = await resp.json()
+        return result
+    }
+    catch (err) {
+        throw(new Error(err.message))
+    }
 }

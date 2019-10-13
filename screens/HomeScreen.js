@@ -30,8 +30,8 @@ export default class Home extends React.Component {
         <View style={styles.container}>
             <View style={styles.searchContainer}>
                 <TextInput value={this.state.value} onChangeText={this.handleChange}
-                style={styles.searchInput} placeholder='Search for movies!'/>
-                <Button onPress={this.fetchMovies} title='Search' />
+                style={styles.searchInput} placeholder='Type here to start searching!'/>
+                <Button style={{borderWidth: 1,}} onPress={this.fetchMovies} title='Search' />
             </View>
 
             {this.state.error ? <Text style={styles.error}>{this.state.error}</Text> : null}
