@@ -9,6 +9,7 @@ export default class ResultContainer extends React.Component {
 
     getDetails = async (key) => {
         details = await fetchDetails(key)
+        if(details.Poster === 'N/A') {details.Poster='http://www.cse.iitd.ernet.in/projects/data/default.png'}
         this.props.navigation.push('Details', details)
     }
 
@@ -18,9 +19,10 @@ export default class ResultContainer extends React.Component {
             if(imdbids.indexOf(movie.imdbID) === -1)
             {
                 imdbids.push(movie.imdbID)
+                movie.Poster === 'N/A' ? poster = 'http://www.cse.iitd.ernet.in/projects/data/default.png' : poster = movie.Poster
                 return (
                     <TouchableOpacity key={movie.imdbID} style={styles.movieContainer} onPress={() => this.getDetails(movie.imdbID)}>
-                        <Image defaultSource={require('../assets/default.png')} source={{uri: movie.Poster}} style={styles.moviePoster} />
+                        <Image source={{uri: poster}} style={styles.moviePoster} />
                         <View style={styles.movieData}> 
                             <Text style={styles.row}>Title: {movie.Title ? movie.Title : 'N/A'}</Text>
                             <Text style={styles.row}>Year: {movie.Year ? movie.Year : 'N/A'}</Text>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, Image, StyleSheet } from 'react-native'
+import { ScrollView, Text, Image, StyleSheet, Dimensions } from 'react-native'
 
 export default class DetailsScreen extends React.Component {
     static navigationOptions = ({navigation}) => {
@@ -15,9 +15,8 @@ export default class DetailsScreen extends React.Component {
     render() {
         return (
             <ScrollView>
-                <Image source={{uri: this.props.navigation.getParam('Poster', require('../assets/default.png'))}}
+                <Image source={{uri: this.props.navigation.getParam('Poster', '')}}
                 style={styles.poster}
-                defaultSource={require('../assets/default.png')}
                 />
                 <Text style={styles.row}>Title: {this.props.navigation.getParam('Title', 'N/A')}</Text>
                 <Text style={styles.row}>Year: {this.props.navigation.getParam('Year', 'N/A')}</Text>
@@ -42,11 +41,10 @@ export default class DetailsScreen extends React.Component {
 
 const styles = StyleSheet.create({
     poster: {
-        width: 300,
-        height: 300,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width,
         alignSelf: 'center',
-        margin: 10,
-        borderWidth: 1,
+        marginVertical: 10,
         resizeMode: 'contain',
     },
     row: {
